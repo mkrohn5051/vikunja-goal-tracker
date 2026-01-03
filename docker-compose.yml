@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_PASSWORD: CHANGE_ME_SECURE_DB_PASSWORD
+      POSTGRES_USER: vikunja
+      POSTGRES_DB: vikunja
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - vikunja
+
+  vikunja:
+    image: vikunja/vikunja:latest
+    environment:
+      VIKUNJA_DATABASE_HOST: db
+      VIKUNJA_DATABASE_PASSWORD: CHANGE_ME_SECURE_DB_PASSWORD
+      VIKUNJA_DATABASE_TYPE: postgres
+      VIKUNJA_DATABASE_USER: vikunja
+      VIKUNJA_DATABASE_DATABASE: vikunja
+      VIKUNJA_SERVICE_JWTSECRET: CHANGE_ME_RANDOM_32_CHARACTER_PASSWORD
+      VIKUNJA_SERVICE_PUBLICURL: http://YOUR_PI_IP:3456
+    ports:
+      - "3456:3456"
+    volumes:
+      - ./files:/app/vikunja/files
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - vikunja
+
+networks:
+  vikunja:
+    driver: bridge

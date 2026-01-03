@@ -1,0 +1,98 @@
+notepad .gitignore
+```
+
+This file tells Git what NOT to track/commit. Super important for keeping your passwords and personal data safe!
+
+---
+
+**Ignore database files (contains all your personal tasks/goals):**
+```
+# Database files - contains all your personal data
+db/
+```
+
+**What this does:**
+- The `db/` folder has your entire PostgreSQL database
+- This includes all your tasks, goals, weights, study progress - everything!
+- You DON'T want this on GitHub
+
+---
+
+**Ignore uploaded files:**
+```
+# Uploaded files and attachments
+files/
+```
+
+**What this does:**
+- Any files you upload to Vikunja (screenshots, PDFs, etc.) go here
+- Also personal data that shouldn't be public
+
+---
+
+**Ignore environment files with secrets:**
+```
+# Environment files with secrets
+.env
+.env.local
+```
+
+**What this does:**
+- Some people use `.env` files to store passwords instead of putting them directly in `docker-compose.yml`
+- Even though we're not using these now, good to have for future expansion
+- Prevents accidentally committing secrets
+
+---
+
+**Ignore backup files:**
+```
+# Backups
+*.tar.gz
+*.sql
+*.dump
+```
+
+**What this does:**
+- When you backup your database, these are common file extensions
+- `*.tar.gz` = compressed archive files
+- `*.sql` = database dumps
+- `*.dump` = PostgreSQL backup files
+
+---
+
+**Ignore OS-specific files:**
+```
+# OS files
+.DS_Store
+Thumbs.db
+```
+
+**What this does:**
+- `.DS_Store` = macOS creates these in every folder (annoying!)
+- `Thumbs.db` = Windows thumbnail cache
+- These aren't harmful but clutter your repo
+
+---
+
+**Ignore editor files:**
+```
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+```
+
+**What this does:**
+- `*.swp`, `*.swo` = Vim editor temporary files
+- `*~` = Backup files from various editors
+- `.vscode/` = VS Code settings (personal preferences)
+- `.idea/` = JetBrains IDE settings
+
+---
+
+**Ignore log files:**
+```
+# Logs
+*.log
