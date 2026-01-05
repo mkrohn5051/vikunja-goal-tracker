@@ -576,6 +576,27 @@ Should run comfortably alongside:
 
 \- \[ ] LSTM integration for trend prediction
 
+## Bonus: Docker Container Monitoring with Dozzle
+
+For at-a-glance monitoring of all Docker containers on your Pi:
+```bash
+docker run -d \
+  --name dozzle \
+  --restart unless-stopped \
+  -p 9999:8080 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  amir20/dozzle:latest
+```
+
+Access at: `http://YOUR_PI_IP:9999`
+
+Features:
+- Real-time container status
+- Live log streaming
+- Search and filter logs
+- Lightweight (~20MB RAM)
+- Dark mode support
+
 
 
 \## Future Tech Stack (Phase 3)
